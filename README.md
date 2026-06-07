@@ -1,6 +1,6 @@
-# md-viewer
+# markdown-preview
 
-A lightweight, zero-dependency markdown previewer for Linux. Render any `.md` file as a polished HTML page and open it in your browser — from the command line **or** your file manager's right-click menu. No temp files left behind.
+A lightweight, zero-dependency markdown previewer for Linux. Render any `.md` file as a polished HTML page and open it in your browser — from the command line **or** your file manager's right-click menu.
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
@@ -28,8 +28,6 @@ A lightweight, zero-dependency markdown previewer for Linux. Render any `.md` fi
 
 The installer auto-detects which file managers are installed and configures only the relevant ones.
 
-No temporary HTML files are created; the preview is served live from memory and automatically cleaned up after viewing.
-
 ## Installation
 
 ### Quick install
@@ -51,7 +49,7 @@ The installer will:
 
 ```bash
 cargo build --release
-cp target/release/md-viewer ~/.local/bin/
+cp target/release/markdown-preview ~/.local/bin/
 ```
 
 ### Requirements
@@ -65,10 +63,10 @@ cp target/release/md-viewer ~/.local/bin/
 ### Command line
 
 ```bash
-md-viewer README.md
+markdown-preview README.md
 ```
 
-Launches a temporary local web server, opens your default browser to the preview, and serves the page once (no files are written to disk).
+Generates a styled HTML file in `/tmp/` and opens it in your default browser.
 
 ### File manager
 
@@ -88,7 +86,7 @@ let html = render_markdown("# Hello\n\n**World**", "My Doc");
 let fragment = markdown_to_html_fragment("# Hello");
 
 // Custom HTML template
-let html = build_html("Custom Title", &amp;fragment);
+let html = build_html("Custom Title", &fragment);
 ```
 
 ## Project Structure
