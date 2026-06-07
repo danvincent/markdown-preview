@@ -1,0 +1,15 @@
+[package]
+name = "markdown-preview"
+version = "0.1.0"
+edition = "2024"
+description = "A lightweight markdown previewer for Linux — CLI and file manager right-click integration"
+license = "MIT"
+repository = "https://github.com/danvincent/markdown-preview"
+keywords = ["markdown", "preview", "html", "gfm", "linux"]
+categories = ["command-line-utilities", "text-processing"]
+readme = "README.md"
+
+[dependencies]
+pulldown-cmark = { version = "0.12", default-features = false, features = ["html"] }
+open = "5"
+
