@@ -1,4 +1,4 @@
-# markdown-preview
+# md-viewer
 
 A lightweight, zero-dependency markdown previewer for Linux. Render any `.md` file as a polished HTML page and open it in your browser — from the command line **or** your file manager's right-click menu.
 
@@ -49,7 +49,7 @@ The installer will:
 
 ```bash
 cargo build --release
-cp target/release/markdown-preview ~/.local/bin/
+cp target/release/md-viewer ~/.local/bin/
 ```
 
 ### Requirements
@@ -63,7 +63,7 @@ cp target/release/markdown-preview ~/.local/bin/
 ### Command line
 
 ```bash
-markdown-preview README.md
+md-viewer README.md
 ```
 
 Generates a styled HTML file in `/tmp/` and opens it in your default browser.
@@ -86,7 +86,7 @@ let html = render_markdown("# Hello\n\n**World**", "My Doc");
 let fragment = markdown_to_html_fragment("# Hello");
 
 // Custom HTML template
-let html = build_html("Custom Title", &fragment);
+let html = build_html("Custom Title", &amp;fragment);
 ```
 
 ## Project Structure
