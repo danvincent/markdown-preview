@@ -9,7 +9,14 @@ keywords = ["markdown", "preview", "html", "gfm", "linux"]
 categories = ["command-line-utilities", "text-processing"]
 readme = "README.md"
 
+[lib]
+name = "md_viewer"
+
 [dependencies]
 pulldown-cmark = { version = "0.12", default-features = false, features = ["html"] }
 open = "5"
+tiny_http = "0.12"
+
+[dev-dependencies]
+ureq = "2.9.1"
 
