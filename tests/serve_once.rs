@@ -34,8 +34,23 @@ fn test_serve_once_then_quit_html() {
     // Wait server thread to finish
     handle.join().unwrap();
     assert!(served_flag.load(std::sync::atomic::Ordering::SeqCst));
-    // Try again: should fail (server closed)
+    // Try again: should fail (server closed).  Retry in a loop because tiny_http's
+    // internal worker threads may briefly keep the socket alive after the server is dropped.
     use std::net::{ToSocketAddrs};
+    use std::time::Duration;
     let sock_addr = addr.to_string().to_socket_addrs().unwrap().next().unwrap();
-    assert!(TcpStream::connect(sock_addr).is_err());
+    let mut last_err = None;
+    for _ in 0..20 {
+        match TcpStream::connect(sock_addr) {
+            Ok(_) => {
+                thread::sleep(Duration::from_millis(50));
+                continue;
+            }
+            Err(e) => {
+                last_err = Some(e);
+                break;
+            }
+        }
+    }
+    assert!(last_err.is_some(), "server socket should have been closed");
 }
