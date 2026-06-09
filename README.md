@@ -1,6 +1,6 @@
 # markdown-preview
 
-A lightweight, zero-dependency markdown previewer for Linux. Render any `.md` file as a polished HTML page and open it in your browser — from the command line **or** your file manager's right-click menu.
+A lightweight, zero-dependency markdown previewer for Linux. Render any `.md` file as a polished HTML page and open it in your browser — from the command line **or** your file manager's right-click menu. No temp files left behind.
 
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
@@ -27,6 +27,8 @@ A lightweight, zero-dependency markdown previewer for Linux. Render any `.md` fi
 | **Thunar** | XFCE | Custom action (UCA) |
 
 The installer auto-detects which file managers are installed and configures only the relevant ones.
+
+No temporary HTML files are created; the preview is served live from memory and automatically cleaned up after viewing.
 
 ## Installation
 
@@ -66,7 +68,7 @@ cp target/release/markdown-preview ~/.local/bin/
 markdown-preview README.md
 ```
 
-Generates a styled HTML file in `/tmp/` and opens it in your default browser.
+Launches a temporary local web server, opens your default browser to the preview, and serves the page once (no files are written to disk).
 
 ### File manager
 

@@ -150,7 +150,12 @@ install_thunar() {
     # If uca.xml exists, insert action before </actions>
     if [[ -f "$uca_file" ]]; then
         if ! grep -q "md-viewer\|Markdown Preview" "$uca_file" 2>/dev/null; then
-            sed -i "s|</actions>|${new_action}\n</actions>|" "$uca_file"
+            # Insert action before </actions> safely using awk
+            tmpfile=$(mktemp)
+            awk -v new_action="$new_action" '
+                /<\/actions>/ && !x {print new_action; x=1}
+                {print}
+            ' "$uca_file" > "$tmpfile" && mv "$tmpfile" "$uca_file"
             info "Thunar (XFCE) context menu added to existing uca.xml"
         else
             info "Thunar (XFCE) context menu already exists"
